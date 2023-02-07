@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const assignmentSchema = require('./Assignment');
+const reactionSchema = require('./Reaction');
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -14,12 +14,8 @@ const userSchema = new Schema(
       required: true,
       max_length: 50,
     },
-    github: {
-      type: String,
-      required: true,
-      max_length: 50,
-    },
-    assignments: [assignmentSchema],
+    
+    reactions: [reactionSchema],
   },
   {
     toJSON: {
