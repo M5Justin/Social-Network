@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
+const thoughtSchema = require('./Thought')
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -16,6 +17,7 @@ const userSchema = new Schema(
     },
     
     reactions: [reactionSchema],
+    
   },
   {
     toJSON: {
