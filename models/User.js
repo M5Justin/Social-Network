@@ -15,6 +15,22 @@ const userSchema = new Schema(
       required: true,
       max_length: 50,
     },
+     email: {
+      type: String,
+      required: true,
+      unique:true,
+      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
+      max_length: 50,
+    },
+    thoughts: [{
+      type: Schema.Types.ObjectId,
+      ref: "Thought",
+    }],
+    friends: [{
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }]
+  },
     
     reactions: [reactionSchema],
     
@@ -25,6 +41,11 @@ const userSchema = new Schema(
     },
   }
 );
+
+userSchema.virtual('friendCount').get(function (){
+  return this.friends.length;
+});
+
 
 const User = model('user', userSchema);
 
